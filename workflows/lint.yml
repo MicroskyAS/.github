@@ -1,6 +1,12 @@
----
-on: [pull_request, push]
-name: Linting Code Base
+name: Super Linter
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
 
 jobs:
   lint:
@@ -13,14 +19,13 @@ jobs:
           fetch-depth: 0
 
       - name: Linting
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: master
           DISABLE_ERRORS: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TERRAFORM_TERRASCAN_CONFIG_FILE: terrascan.toml
-
 
 
 
